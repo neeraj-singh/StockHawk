@@ -42,17 +42,17 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
 
+    private static final int CURSOR_LOADER_ID = 0;
+    boolean isConnected;
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
-    private static final int CURSOR_LOADER_ID = 0;
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
-    boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

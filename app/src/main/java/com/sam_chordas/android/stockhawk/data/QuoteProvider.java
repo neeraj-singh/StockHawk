@@ -16,16 +16,16 @@ public class QuoteProvider {
 
     static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
-    interface Path {
-        String QUOTES = "quotes";
-    }
-
     private static Uri buildUri(String... paths) {
         Uri.Builder builder = BASE_CONTENT_URI.buildUpon();
         for (String path : paths) {
             builder.appendPath(path);
         }
         return builder.build();
+    }
+
+    interface Path {
+        String QUOTES = "quotes";
     }
 
     @TableEndpoint(table = QuoteDatabase.QUOTES)

@@ -1,4 +1,4 @@
-package com.sam_chordas.android.stockhawk.rest;
+package com.sam_chordas.android.neerajs.stockhawk.rest;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

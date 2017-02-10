@@ -1,4 +1,4 @@
-package com.sam_chordas.android.stockhawk.touch_helper;
+package com.sam_chordas.android.neerajs.stockhawk.touch_helper;
 
 /**
  * Created by sam_chordas on 10/6/15.

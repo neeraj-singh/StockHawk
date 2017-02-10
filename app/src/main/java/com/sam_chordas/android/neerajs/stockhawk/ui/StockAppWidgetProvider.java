@@ -1,4 +1,4 @@
-package com.sam_chordas.android.stockhawk.ui;
+package com.sam_chordas.android.neerajs.stockhawk.ui;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

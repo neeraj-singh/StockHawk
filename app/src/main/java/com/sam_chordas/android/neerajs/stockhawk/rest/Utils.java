@@ -1,11 +1,11 @@
-package com.sam_chordas.android.stockhawk.rest;
+package com.sam_chordas.android.neerajs.stockhawk.rest;
 
 import android.content.ContentProviderOperation;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.sam_chordas.android.stockhawk.data.QuoteColumns;
-import com.sam_chordas.android.stockhawk.data.QuoteProvider;
+import com.sam_chordas.android.neerajs.stockhawk.data.QuoteColumns;
+import com.sam_chordas.android.neerajs.stockhawk.data.QuoteProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;

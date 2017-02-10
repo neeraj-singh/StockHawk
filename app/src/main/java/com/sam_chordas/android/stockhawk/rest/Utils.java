@@ -1,6 +1,7 @@
 package com.sam_chordas.android.stockhawk.rest;
 
 import android.content.ContentProviderOperation;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
@@ -11,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by sam_chordas on 10/8/15.
@@ -51,8 +53,11 @@ public class Utils {
     }
 
     public static String truncateBidPrice(String bidPrice) {
-        bidPrice = String.format("%.2f", Float.parseFloat(bidPrice));
-        return bidPrice;
+        if (!TextUtils.isEmpty(bidPrice) && !"null".equalsIgnoreCase(bidPrice)) {
+            bidPrice = String.format("%.2f", Float.parseFloat(bidPrice), Locale.US);
+            return bidPrice;
+        }
+        return "0";
     }
 
     public static String truncateChange(String change, boolean isPercentChange) {
@@ -63,8 +68,12 @@ public class Utils {
             change = change.substring(0, change.length() - 1);
         }
         change = change.substring(1, change.length());
-        double round = (double) Math.round(Double.parseDouble(change) * 100) / 100;
-        change = String.format("%.2f", round);
+        try {
+            double round = (double) Math.round(Double.parseDouble(change) * 100) / 100;
+            change = String.format("%.2f", round);
+        } catch (NumberFormatException e) {
+            Log.e(LOG_TAG,"Number format exception for "+e.getMessage());
+        }
         StringBuffer changeBuffer = new StringBuffer(change);
         changeBuffer.insert(0, weight);
         changeBuffer.append(ampersand);

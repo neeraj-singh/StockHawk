@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.udacity.stockhawk">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.Manifest.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.Manifest.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name=".StockHawkApp"
@@ -23,6 +24,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.udacity.stockhawk.ui.DetailActivity"
+            android:theme="@style/AppTheme.Details"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.udacity.stockhawk.ui.DetailActivity"/>
+        </activity>
         <service
             android:name=".sync.QuoteIntentService"
             android:exported="false" />
@@ -37,6 +46,24 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Widget receiver and services-->
+        <receiver
+            android:name="com.udacity.stockhawk.widget.StockWidgetProvider"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.calgen.stockhawk.ACTION_DATA_UPDATED"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stock_widget_provider_info"/>
+        </receiver>
+
+        <service
+            android:name="com.udacity.stockhawk.widget.StockWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest>

@@ -8,4 +8,10 @@
     <color name="material_red_700">#D50000</color>
     <color name="material_green_700">#00C853</color>
 
+    <color name="error">#F34235</color>
+    <color name="dark_grey_with_opacity">#DE3C3F41</color>
+    <color name="white">#FFFFFF</color>
+    <color name="material_red">#D32F2F</color>
+    <color name="material_green">#388E3C</color>
+    <color name="material_grey">#ff303030</color>
 </resources>

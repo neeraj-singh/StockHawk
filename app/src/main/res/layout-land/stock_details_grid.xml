@@ -1,0 +1,94 @@
+<android.support.v7.widget.GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingEnd="@dimen/activity_vertical_margin"
+    android:paddingStart="@dimen/activity_vertical_margin"
+    app:columnCount="2">
+
+
+    <android.support.v4.widget.Space
+        app:layout_columnSpan="2"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"/>
+
+    <TextView
+        android:id="@+id/stock_name"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLength="21"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:textColor="@color/white"
+        app:layout_columnSpan="2"
+        app:layout_gravity="fill_horizontal"
+        tools:text="Facebook Inc."
+        />
+
+    <TextView
+        android:id="@+id/stock_exchange"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:gravity="center_horizontal"
+        android:maxLength="21"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:textColor="@color/white"
+        app:layout_columnSpan="2"
+        app:layout_gravity="fill_horizontal"
+        tools:text="NASDAQ"
+        />
+
+
+    <TextView
+        android:id="@+id/stock_price"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:transitionName="@string/stock_price_transition_name"
+        app:layout_columnWeight="1"
+        app:layout_gravity="fill_horizontal"
+        tools:text="$914.15"/>
+
+    <TextView
+        android:id="@+id/day_highest"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        app:layout_columnWeight="1"
+        app:layout_gravity="center_horizontal"
+        tools:text="$180"
+        />
+
+    <android.support.v4.widget.Space
+        android:layout_height="@dimen/base_padding"
+        app:layout_columnSpan="2"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:id="@+id/absolute_change"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:padding="3dp"
+        android:textColor="@color/white"
+        android:transitionName="@string/stock_change_transition_name"
+        app:layout_gravity="center_horizontal"
+        tools:text="+ $0.14"/>
+
+    <TextView
+        android:id="@+id/day_lowest"
+        style="@style/Base.TextAppearance.AppCompat.Body2"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textStyle="normal"
+        app:layout_gravity="center_horizontal"
+        tools:text="$150"/>
+
+    <android.support.v4.widget.Space
+        app:layout_columnSpan="2"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1"/>
+
+</android.support.v7.widget.GridLayout>

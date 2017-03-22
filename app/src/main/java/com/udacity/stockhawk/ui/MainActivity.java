@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             QuoteSyncJob.initialize(this);
             swipeRefreshLayout.setRefreshing(true);
         }
-        setUpDeletionOnSlide();
+        setSlideAction();
         getSupportActionBar().setTitle(R.string.app_name);
         getSupportLoaderManager().initLoader(STOCK_LOADER, null, this);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onDestroy();
     }
 
-    private void setUpDeletionOnSlide() {
+    private void setSlideAction() {
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -222,7 +222,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @SuppressLint("SwitchIntDef")
     private void updateEmptyView() {
-        swipeRefreshLayout.setVisibility(View.GONE);
         int message;
 
         if (adapter.getItemCount() == 0) {
@@ -244,13 +243,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     message = R.string.loading_data;
                     break;
             }
-            if (!isNetworkUp()) message = R.string.error_no_network;
-            if (PrefUtils.getStocks(this).size() == 0) message = R.string.error_no_stocks;
+            if (!isNetworkUp()) {
+                message = R.string.error_no_network;
+            }
+            if (PrefUtils.getStocks(this).size() == 0) {
+                message = R.string.error_no_stocks;
+            }
             error.setText(message);
-            error.setVisibility(View.VISIBLE);
         } else {
             swipeRefreshLayout.setRefreshing(false);
-            swipeRefreshLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -265,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             if (isNetworkUp()) {
                 swipeRefreshLayout.setRefreshing(true);
-                swipeRefreshLayout.setVisibility(View.VISIBLE);
             } else {
                 String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();

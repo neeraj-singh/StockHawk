@@ -81,7 +81,7 @@ public final class QuoteSyncJob {
                 return;
             }
 
-            ArrayList<ContentValues> quoteCVs = new ArrayList<>();
+            ArrayList<ContentValues> contentValuesArrayList = new ArrayList<>();
 
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
@@ -93,7 +93,7 @@ public final class QuoteSyncJob {
                 float dayHighest;
                 float percentChange;
                 String stockName;
-                String exchangeName;
+//                String exchangeName;
                 try {
                     quote = stock.getQuote();
                     price = quote.getPrice().floatValue();
@@ -112,7 +112,7 @@ public final class QuoteSyncJob {
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
                     stockName = stock.getName();
-                    exchangeName = stock.getStockExchange();
+//                    exchangeName = stock.getStockExchange();
                 } catch (NullPointerException exception) {
                     Timber.e(exception, "Incorrect stock symbol entered : " + symbol);
 
@@ -140,25 +140,25 @@ public final class QuoteSyncJob {
                 from.add(Calendar.DAY_OF_YEAR, -5);
                 String dayHistory = getHistory(stock, from, to, Interval.DAILY);
 
-                ContentValues quoteCV = new ContentValues();
-                quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
-                quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
-                quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
-                quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
-                quoteCV.put(Contract.Quote.COLUMN_MONTH_HISTORY, monthHistory);
-                quoteCV.put(Contract.Quote.COLUMN_DAY_HISTORY, dayHistory);
-                quoteCV.put(Contract.Quote.COLUMN_WEEK_HISTORY, weekHistory);
-                quoteCV.put(Contract.Quote.COLUMN_DAY_HIGHEST, dayHighest);
-                quoteCV.put(Contract.Quote.COLUMN_DAY_LOWEST, dayLowest);
-                quoteCV.put(Contract.Quote.COLUMN_STOCK_NAME, stockName);
-                quoteCV.put(Contract.Quote.COLUMN_STOCK_EXCHANGE, exchangeName);
-                quoteCVs.add(quoteCV);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(Contract.Quote.COLUMN_SYMBOL, symbol);
+                contentValues.put(Contract.Quote.COLUMN_PRICE, price);
+                contentValues.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
+                contentValues.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
+                contentValues.put(Contract.Quote.COLUMN_MONTH_HISTORY, monthHistory);
+                contentValues.put(Contract.Quote.COLUMN_DAY_HISTORY, dayHistory);
+                contentValues.put(Contract.Quote.COLUMN_WEEK_HISTORY, weekHistory);
+                contentValues.put(Contract.Quote.COLUMN_DAY_HIGHEST, dayHighest);
+                contentValues.put(Contract.Quote.COLUMN_DAY_LOWEST, dayLowest);
+                contentValues.put(Contract.Quote.COLUMN_STOCK_NAME, stockName);
+//                contentValues.put(Contract.Quote.COLUMN_STOCK_EXCHANGE, exchangeName);
+                contentValuesArrayList.add(contentValues);
             }
 
             context.getContentResolver()
                     .bulkInsert(
                             Contract.Quote.URI,
-                            quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
+                            contentValuesArrayList.toArray(new ContentValues[contentValuesArrayList.size()]));
             if (!invalidFlag) setStockStatus(context, STOCK_STATUS_OK);
             updateWidget(context);
         } catch (IOException exception) {

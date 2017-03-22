@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_height"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="Highest" />
+
+        <TextView
+            android:id="@+id/highest_rate"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_height"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="$ 40" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_height"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="Lowest" />
+
+        <TextView
+            android:id="@+id/lowest_rate"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_height"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="$ 30" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1">
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_alignParentLeft="true"
+            android:gravity="left|center_vertical"
+            android:text="Current " />
+
+        <TextView
+            android:id="@+id/absolute_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="8dp"
+            android:text="+$ 5"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="3dp"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
+            android:elevation="4dp"
+            android:fontFamily="sans-serif-light"
+            android:transitionName="@string/stock_price_transition_name" />
+
+        <TextView
+            android:id="@+id/current_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_toLeftOf="@id/absolute_change"
+            android:gravity="right|center_vertical"
+            android:text="$ 35"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:transitionName="@string/stock_price_transition_name" />
+
+    </RelativeLayout>
+</LinearLayout>

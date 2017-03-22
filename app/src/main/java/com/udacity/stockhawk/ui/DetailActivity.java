@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -37,15 +39,11 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     public Boolean dataLoaded = false;
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
-    @BindView(R.id.stock_name)
-    public TextView tvStockName;
-//    @BindView(R.id.stock_exchange)
-//    public TextView tvStockExchange;
-    @BindView(R.id.stock_price)
+    @BindView(R.id.current_rate)
     public TextView tvStockPrice;
-    @BindView(R.id.day_highest)
+    @BindView(R.id.highest_rate)
     public TextView tvDayHighest;
-    @BindView(R.id.day_lowest)
+    @BindView(R.id.lowest_rate)
     public TextView tvDayLowest;
     @BindView(R.id.absolute_change)
     public TextView tvAbsoluteChange;
@@ -55,6 +53,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     public TabLayout tabLayout;
     private Uri stockUri;
 
+    ActionBar supportActionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +62,21 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        supportActionBar = getSupportActionBar();
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         stockUri = intent == null ? null : intent.getData();
 
         setupViewPager();
 
         getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        super.onConfigurationChanged(newConfig);
+
     }
 
     @Override
@@ -126,7 +133,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data.moveToFirst()) {
-            String stockExchange = data.getString(Contract.Quote.POSITION_EXCHANGE);
             String stockName = data.getString(Contract.Quote.POSITION_NAME);
             Float stockPrice = data.getFloat(Contract.Quote.POSITION_PRICE);
             Float absolutionChange = data.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
@@ -140,8 +146,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             dollarFormat.setMaximumFractionDigits(2);
             dollarFormat.setMinimumFractionDigits(2);
 
-//            tvStockExchange.setText(stockExchange);
-            tvStockName.setText(stockName);
+            supportActionBar.setTitle(stockName);
             tvStockPrice.setText(dollarFormat.format(stockPrice));
             tvStockPrice.setContentDescription(String.format(getString(R.string.stock_price_cd), tvStockPrice.getText()));
             tvAbsoluteChange.setText(dollarFormat.format(absolutionChange));

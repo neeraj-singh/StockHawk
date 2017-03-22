@@ -8,4 +8,5 @@
     <dimen name="widget_min_resize_width">216dp</dimen>
     <dimen name="widget_min_resize_height">110dp</dimen>
     <dimen name="widget_margin">8dp</dimen>
+    <dimen name="text_height">40dp</dimen>
 </resources>

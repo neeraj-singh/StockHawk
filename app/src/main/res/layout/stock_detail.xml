@@ -7,8 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginLeft="@dimen/margin_text"
+        android:layout_marginRight="@dimen/margin_text">
 
         <TextView
             style="@style/Base.TextAppearance.AppCompat.Title"
@@ -31,8 +31,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:layout_marginLeft="@dimen/margin_text"
+        android:layout_marginRight="@dimen/margin_text">
 
         <TextView
             style="@style/Base.TextAppearance.AppCompat.Subhead"
@@ -55,8 +55,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="@dimen/margin_text"
+        android:layout_marginRight="@dimen/margin_text"
         android:layout_weight="1">
 
         <TextView
@@ -72,13 +72,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="@dimen/margin_text"
             android:text="+$ 5"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="3dp"
             style="@style/Base.TextAppearance.AppCompat.Body2"
-            android:elevation="4dp"
+            android:elevation="@dimen/appbar_elevation"
             android:fontFamily="sans-serif-light"
             android:transitionName="@string/stock_price_transition_name" />
 

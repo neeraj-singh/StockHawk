@@ -1,8 +1,3 @@
-
-/**
- * Created by neeraj.singh on 22/03/17.
- */
-
 package com.udacity.stockhawk.ui;
 
 import android.database.Cursor;
@@ -30,10 +25,11 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.utils.CustomMarkerView;
-import com.udacity.stockhawk.utils.DateParser;
 import com.udacity.stockhawk.utils.XAxisFormatter;
 import com.udacity.stockhawk.utils.YAxisFormatter;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindColor;
@@ -132,7 +128,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     private void setUpLineChart() {
-        Pair<Float, List<Entry>> result = DateParser.getFormattedStockHistory(historyData);
+        Pair<Float, List<Entry>> result = getFormattedStockHistory(historyData);
         List<Entry> dataPairs = result.second;
         Float referenceTime = result.first;
         LineDataSet dataSet = new LineDataSet(dataPairs, "");
@@ -190,5 +186,25 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         //No action needed
+    }
+
+    private Pair<Float, List<Entry>> getFormattedStockHistory(String history) {
+        List<Entry> entries = new ArrayList<>();
+        List<Float> timeData = new ArrayList<>();
+        List<Float> stockPrice = new ArrayList<>();
+        String[] dataPairs = history.split("\\$");
+
+        for (String pair : dataPairs) {
+            String[] entry = pair.split(":");
+            timeData.add(Float.valueOf(entry[0]));
+            stockPrice.add(Float.valueOf(entry[1]));
+        }
+        Collections.reverse(timeData);
+        Collections.reverse(stockPrice);
+        Float referenceTime = timeData.get(0);
+        for (int i = 0; i < timeData.size(); i++) {
+            entries.add(new Entry(timeData.get(i) - referenceTime, stockPrice.get(i)));
+        }
+        return new Pair<>(referenceTime, entries);
     }
 }

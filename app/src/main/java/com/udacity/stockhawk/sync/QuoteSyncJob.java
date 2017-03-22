@@ -93,14 +93,11 @@ public final class QuoteSyncJob {
                 float dayHighest;
                 float percentChange;
                 String stockName;
-//                String exchangeName;
                 try {
                     quote = stock.getQuote();
                     price = quote.getPrice().floatValue();
 
                     BigDecimal temp = quote.getDayLow();
-                    //This is done because lowest or highest of the day is unknown
-                    //and quote.getDayLow() returns null.
                     if (temp == null) {
                         dayLowest = -1;
                         dayHighest = -1;
@@ -112,7 +109,6 @@ public final class QuoteSyncJob {
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
                     stockName = stock.getName();
-//                    exchangeName = stock.getStockExchange();
                 } catch (NullPointerException exception) {
                     Timber.e(exception, "Incorrect stock symbol entered : " + symbol);
 
@@ -151,7 +147,6 @@ public final class QuoteSyncJob {
                 contentValues.put(Contract.Quote.COLUMN_DAY_HIGHEST, dayHighest);
                 contentValues.put(Contract.Quote.COLUMN_DAY_LOWEST, dayLowest);
                 contentValues.put(Contract.Quote.COLUMN_STOCK_NAME, stockName);
-//                contentValues.put(Contract.Quote.COLUMN_STOCK_EXCHANGE, exchangeName);
                 contentValuesArrayList.add(contentValues);
             }
 

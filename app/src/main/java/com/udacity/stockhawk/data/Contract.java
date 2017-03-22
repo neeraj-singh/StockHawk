@@ -43,7 +43,6 @@ public final class Contract {
         public static final int POSITION_MONTH_HISTORY = 5;
         public static final int POSITION_WEEK_HISTORY = 6;
         public static final int POSITION_DAY_HISTORY = 7;
-//        public static final int POSITION_EXCHANGE = 8;
         public static final int POSITION_NAME = 8;
         public static final int POSITION_LOWEST = 9;
         public static final int POSITION_HIGHEST = 10;
@@ -57,7 +56,6 @@ public final class Contract {
                 COLUMN_MONTH_HISTORY,
                 COLUMN_WEEK_HISTORY,
                 COLUMN_DAY_HISTORY,
-//                COLUMN_STOCK_EXCHANGE,
                 COLUMN_STOCK_NAME,
                 COLUMN_DAY_LOWEST,
                 COLUMN_DAY_HIGHEST

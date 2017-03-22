@@ -29,7 +29,6 @@ class DbHelper extends SQLiteOpenHelper {
                 Quote.COLUMN_MONTH_HISTORY + " TEXT NOT NULL, " +
                 Quote.COLUMN_DAY_HISTORY + " TEXT NOT NULL, " +
                 Quote.COLUMN_WEEK_HISTORY + " TEXT NOT NULL, " +
-//                Quote.COLUMN_STOCK_EXCHANGE + " TEXT NOT NULL, " +
                 Quote.COLUMN_STOCK_NAME + " TEXT NOT NULL, " +
                 Quote.COLUMN_DAY_HIGHEST + " REAL NOT NULL, " +
                 Quote.COLUMN_DAY_LOWEST + " REAL NOT NULL, " +

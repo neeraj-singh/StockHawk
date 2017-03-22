@@ -1,6 +1,5 @@
 package com.udacity.stockhawk.ui;
 
-
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.view.ViewCompat;
@@ -21,7 +20,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
     final private Context context;
     final private DecimalFormat dollarFormat;
